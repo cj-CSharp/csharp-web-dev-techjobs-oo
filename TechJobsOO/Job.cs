@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+
 namespace TechJobsOO
 {
     public class Job
@@ -52,5 +54,75 @@ namespace TechJobsOO
         }
 
         // TODO: Generate Equals() and GetHashCode() methods.
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            int nullCounter = 0;
+
+            string jobName;
+            string jobEmployerName;
+            string jobEmployerLocation;
+            string jobJobType;
+            string jobJobCoreComp;
+
+            if(Name == null || Name == "")
+            {
+                jobName = "Data Not Available";
+                nullCounter++;
+            } else
+            {
+                jobName = Name;
+            }
+
+            if(EmployerName == null || EmployerName.Value == "")
+            {
+                jobEmployerName = "Data Not Available";
+                nullCounter++;
+            } else
+            {
+                jobEmployerName = EmployerName.Value;
+            }
+
+            if(EmployerLocation == null || EmployerLocation.Value == "")
+            {
+                jobEmployerLocation = "Data Not Available";
+                nullCounter++;
+            } else
+            {
+                jobEmployerLocation = EmployerLocation.Value;
+            }
+
+            if(JobType == null || JobType.Value == "")
+            {
+                jobJobType = "Data Not Available";
+                nullCounter++;
+            } else
+            {
+                jobJobType = JobType.Value;
+            }
+
+            if(JobCoreCompetency == null || JobCoreCompetency.Value == "")
+            {
+                jobJobCoreComp = "Data Not Available";
+                nullCounter++;
+            } else
+            {
+                jobJobCoreComp = JobCoreCompetency.Value;
+            }
+              
+            if(nullCounter == 5)
+            {
+                return "\nOOPS! This job does not seem to exist.\n";
+            }
+
+            result.Append($"ID: {Id}\n");
+            result.Append($"Name: {jobName}\n");
+            result.Append($"Employer: {jobEmployerName}\n");
+            result.Append($"Location: {jobEmployerLocation}\n");
+            result.Append($"Position Type: {jobJobType}\n");
+            result.Append($"Core Competency: {jobJobCoreComp}");
+
+            return "\n" + result.ToString() + "\n";
+        }
     }
 }
